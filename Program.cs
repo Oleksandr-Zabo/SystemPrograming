@@ -9,7 +9,7 @@ class Program
         {
             string processPath = "notepad.exe";// Path to the process you want to run
 
-            // Запускаємо процес
+            // Start process
             Process process = new Process();
             process.StartInfo.FileName = processPath;
             process.StartInfo.UseShellExecute = false; // For work without shell(window)
