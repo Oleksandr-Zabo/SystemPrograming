@@ -7,28 +7,28 @@ class ParentProcess
     {
         try
         {
-            // Ask for the file path
+            // Запитати шлях до файлу
             Console.WriteLine("Enter the path to the file:");
             string filePath = Console.ReadLine();
 
-            // Ask for the word to search
+            // Запитати слово для пошуку
             Console.WriteLine("Enter the word to search:");
             string searchWord = Console.ReadLine();
 
-            // Validate input
+            // Перевірка введених даних
             if (string.IsNullOrWhiteSpace(filePath) || string.IsNullOrWhiteSpace(searchWord))
             {
                 Console.WriteLine("Invalid input. Please provide both file path and word.");
                 return;
             }
 
-            // Path to the child process executable
-            string childProcessPath = "ChildProcess.exe"; // Ensure ChildProcess.exe is accessible
+            // Шлях до виконуваного файлу дочірнього процесу
+            string childProcessPath = "C:/Users/zaole/RiderProjects/ChildClass1/ChildClass1/bin/Debug/net8.0/ChildClass1"; // Шлях до виконуваного файлу дочірнього процесу
 
-            // Prepare arguments
+            // Підготовка аргументів
             string arguments = $"\"{filePath}\" \"{searchWord}\"";
 
-            // Start the child process
+            // Запуск дочірнього процесу
             Process process = new Process
             {
                 StartInfo = new ProcessStartInfo
@@ -36,18 +36,19 @@ class ParentProcess
                     FileName = childProcessPath,
                     Arguments = arguments,
                     UseShellExecute = false,
-                    RedirectStandardOutput = true
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
                 }
             };
 
             Console.WriteLine("Launching child process...");
             process.Start();
 
-            // Read the output from the child process
+            // Отримання вихідних даних від дочірнього процесу
             string output = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
 
-            // Display the result
+            // Відображення результату
             Console.WriteLine("Child process output:");
             Console.WriteLine(output);
         }
@@ -58,8 +59,10 @@ class ParentProcess
     }
 }
 
-
 /*
+ code for child process
+ 
+ 
  * using System;
 using System.IO;
 
@@ -116,4 +119,4 @@ class ChildProcess
     }
 }
 
-*/
+ */
